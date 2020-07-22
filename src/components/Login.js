@@ -1,8 +1,25 @@
 import React from 'react'
 import '../styles/Login.css'
+import {connect} from 'react-redux'
+import {updateLoginForm} from '../actions/loginForm'
+import {login} from '../actions/assignUser.js'
 
 
-const Login = () => {
+const Login = ({loginFormData, updateLoginForm,login}) => {
+
+  const handleInputChange = event => {
+    const {name, value} = event.target
+    const updatedFormInfo = {
+      ...loginFormData,
+      [name]:value
+    }
+    updateLoginForm(updatedFormInfo)
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    login(loginFormData)
+  }
 
   const togglePassword = e =>{
     e.preventDefault()
@@ -19,20 +36,20 @@ const Login = () => {
     }
   }
   return (
-    // // FIXME: add value attr
+    // // FIXME: add value attr for handler
     <div className="Login">
-      <form name="Login-form" onSubmit="">
+      <form name="Login-form" onSubmit={handleSubmit}>
         <section>
-        <label for="email">Email</label>
+        <label for="username">Username</label>
         <div className="input-box">
-        <input id="email" name="current-email" autocomplete="email" type="text"  required onChange="" />
+        <input id="username" name="current-username" autocomplete="username" type="text"  required value={loginFormData.email} onChange={handleInputChange} />
         </div>
         </section>
 
         <section>
         <label for="password"> Password</label>
         <div className="input-box">
-        <input id="password" name="current-password" autocomplete="password"  type="password" required onChange="" />
+        <input id="password" name="current-password" autocomplete="password"  type="password" required value={loginFormData.password} onChange={handleInputChange} />
         </div>
         </section>
 
@@ -45,5 +62,12 @@ const Login = () => {
   )
 }
 
+const mapState = state => {
+  return {
+    loginFormData: state.loginForm
 
-export default Login
+  }
+}
+
+
+export default connect(mapState, {updateLoginForm, login})(Login)

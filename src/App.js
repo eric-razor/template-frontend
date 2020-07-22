@@ -4,17 +4,13 @@ import {
   BrowserRouter as Router,
   Route,
 } from "react-router-dom";
-
 import Login from './components/Login'
 
 class App extends Component {
 
   constructor() {
     super()
-
-
   }
-
   render(){
     return(
       <div className="App">
