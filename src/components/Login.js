@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/Login.css'
 import {connect} from 'react-redux'
 import {updateLoginForm} from '../actions/loginForm'
-import {login} from '../actions/assignUser.js'
+import {login} from '../actions/authUser.js'
 
 
 const Login = ({loginFormData, updateLoginForm,login}) => {
@@ -13,6 +13,7 @@ const Login = ({loginFormData, updateLoginForm,login}) => {
       ...loginFormData,
       [name]:value
     }
+    console.log(updateLoginForm);
     updateLoginForm(updatedFormInfo)
   }
 
@@ -36,20 +37,19 @@ const Login = ({loginFormData, updateLoginForm,login}) => {
     }
   }
   return (
-    // // FIXME: add value attr for handler
     <div className="Login">
       <form name="Login-form" onSubmit={handleSubmit}>
         <section>
-        <label for="username">Username</label>
+        <label htmlFor="email">Email</label>
         <div className="input-box">
-        <input id="username" name="current-username" autocomplete="username" type="text"  required value={loginFormData.email} onChange={handleInputChange} />
+        <input id="email" type="text"  required value={loginFormData.email} onChange={handleInputChange} />
         </div>
         </section>
 
         <section>
-        <label for="password"> Password</label>
+        <label htmlFor="password"> Password</label>
         <div className="input-box">
-        <input id="password" name="current-password" autocomplete="password"  type="password" required value={loginFormData.password} onChange={handleInputChange} />
+        <input id="password"  type="password" required value={loginFormData.password} onChange={handleInputChange} />
         </div>
         </section>
 

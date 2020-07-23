@@ -1,4 +1,4 @@
-// assign user to redux store
+// auth user to redux store
 
 // sync
 export const setCurrentUser = user => {
