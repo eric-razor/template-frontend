@@ -7,10 +7,6 @@ import {
 import Login from './components/Login'
 
 class App extends Component {
-
-  constructor() {
-    super()
-  }
   render(){
     return(
       <div className="App">
