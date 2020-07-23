@@ -1,5 +1,5 @@
 const initialState = {
-  email:"ericrazor@flatironschool.com",
+  email:"person@example.com",
   password:"password"
 }
 
